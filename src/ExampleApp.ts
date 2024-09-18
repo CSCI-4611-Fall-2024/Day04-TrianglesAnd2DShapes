@@ -79,6 +79,23 @@ export class ExampleApp extends gfx.GfxApp
         this.scene.add(mesh);
 
 
+        const tristrip = new gfx.Mesh2();
+        tristrip.material.drawMode = this.renderer.gl.TRIANGLE_STRIP;
+        const verts: gfx.Vector2[] = [];
+        const nSteps = 100;
+        for (let n = 0; n < nSteps; n++) {
+            const fraction0to1 = n / (nSteps-1);
+            const x = -0.8 + 1.6 * fraction0to1;
+            const yTop = 0.8 * Math.sin(fraction0to1 * 5.0 * Math.PI);
+            verts.push(new gfx.Vector2(x, yTop));
+
+            const yBot = -0.8;
+            verts.push(new gfx.Vector2(x, yBot));
+
+        }
+        tristrip.setVertices(verts);
+        this.scene.add(tristrip);
+
     }
 
 
